@@ -242,6 +242,7 @@
 
 	var Record = __webpack_require__(4);
 	
+	
 	var RecordStoreView = function( recordStore ) {
 	  this.recordStore = recordStore;
 	};
@@ -255,28 +256,6 @@
 	    this.inventory(recordStore, body);
 	    this.addForm(recordStore, body);
 	    this.saleForm(recordStore, body);
-	
-	    var button = document.getElementById('button');
-	
-	    button.onclick = function(event) {
-	    event.preventDefault();
-	
-	    var recordStore = this.recordStore;
-	    var body = document.getElementsByTagName('body')[0];
-	    var artistInput = document.getElementById('new-artist');
-	    var titleInput = document.getElementById('new-title');
-	    var priceInput = document.getElementById('new-price');
-	
-	    var newArtist = artistInput.value;
-	    var newTitle = titleInput.value;
-	    var newPrice = priceInput.value;
-	
-	    newRecord = new Record(newArtist, newTitle, newPrice);
-	    recordStore.addRecord(newRecord);
-	    body.innerHTML = '';
-	    this.render(recordStore);
-	    }.bind(this);
-	
 	  },
 	
 	  nameAndCity: function(recordStore, body) {
@@ -354,27 +333,25 @@
 	    titleInput.id = 'new-title';
 	    priceInput.id = 'new-price';
 	
-	    button.id = 'button';
+	    button.onclick = function(event) {
+	      event.preventDefault();
+	
+	      var recordStore = this.recordStore;
+	      var body = document.getElementsByTagName('body')[0];
+	      var artistInput = document.getElementById('new-artist');
+	      var titleInput = document.getElementById('new-title');
+	      var priceInput = document.getElementById('new-price');
+	
+	      var newArtist = artistInput.value;
+	      var newTitle = titleInput.value;
+	      var newPrice = priceInput.value;
+	
+	      newRecord = new Record(newArtist, newTitle, newPrice);
+	      recordStore.addRecord(newRecord);
+	      body.innerHTML = '';
+	      this.render(recordStore);
+	      }.bind(this);
 	  },
-	
-	  // addAlbum: function(event) {
-	  //   event.preventDefault();
-	
-	  //   var recordStore = this.recordStore;
-	  //   var body = document.getElementsByTagName('body')[0];
-	  //   var artistInput = document.getElementById('new-artist');
-	  //   var titleInput = document.getElementById('new-title');
-	  //   var priceInput = document.getElementById('new-price');
-	
-	  //   var newArtist = artistInput.value;
-	  //   var newTitle = titleInput.value;
-	  //   var newPrice = priceInput.value;
-	
-	  //   newRecord = new Record(newArtist, newTitle, newPrice);
-	  //   recordStore.addRecord(newRecord);
-	  //   body.innerHTML = '';
-	  //   this.render(recordStore);
-	  // }
 	
 	  saleForm: function(recordStore, body) {
 	    var form = document.createElement('form');
@@ -397,51 +374,20 @@
 	    }
 	
 	    button.onclick = function(event) {
-	    event.preventDefault();
-	    var select = document.getElementById('select');
+	      event.preventDefault();
+	      var select = document.getElementById('select');
 	
-	    for (record of recordStore.records) {
-	      if (record.title === select.value) {
-	        recordStore.sellRecord(record);
-	        body.innerHTML = '';
-	        this.render(recordStore);
+	      for (record of recordStore.records) {
+	        if (record.title === select.value) {
+	          recordStore.sellRecord(record);
+	          body.innerHTML = '';
+	          this.render(recordStore);
+	        }
 	      }
-	    }
-	  }.bind(this)
-	
+	    }.bind(this)
 	  }
 	
-	
-	
-	
-	
-	
-	 
-	
 	};
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	module.exports = RecordStoreView;
