@@ -254,7 +254,7 @@
 	    this.nameAndCity(recordStore, body);
 	    this.inventory(recordStore, body);
 	    this.addForm(recordStore, body);
-	    // this.deleteForm(recordStore, body);
+	    this.saleForm(recordStore, body);
 	
 	    var button = document.getElementById('button');
 	
@@ -355,7 +355,7 @@
 	    priceInput.id = 'new-price';
 	
 	    button.id = 'button';
-	  }
+	  },
 	
 	  // addAlbum: function(event) {
 	  //   event.preventDefault();
@@ -375,6 +375,43 @@
 	  //   body.innerHTML = '';
 	  //   this.render(recordStore);
 	  // }
+	
+	  saleForm: function(recordStore, body) {
+	    var form = document.createElement('form');
+	    var select = document.createElement('select');
+	    var button = document.createElement('button');
+	
+	    select.id = 'select';
+	    button.id = 'sellButton';
+	    button.innerText = 'Sell Record'
+	
+	    body.appendChild(form);
+	    form.appendChild(select);
+	    form.appendChild(button);
+	
+	    for (record of recordStore.records) {
+	      var option = document.createElement('option');
+	      option.value = record.title;
+	      option.innerText = record.artist + ', ' + record.title;
+	      select.appendChild(option); 
+	    }
+	
+	    button.onclick = function(event) {
+	    event.preventDefault();
+	    var select = document.getElementById('select');
+	
+	    for (record of recordStore.records) {
+	      if (record.title === select.value) {
+	        recordStore.sellRecord(record);
+	        body.innerHTML = '';
+	        this.render(recordStore);
+	      }
+	    }
+	  }.bind(this)
+	
+	  }
+	
+	
 	
 	
 	
