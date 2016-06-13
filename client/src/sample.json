@@ -1,0 +1,14 @@
+module.exports = [
+  { "artist": "Squarepusher",
+    "title": "Ultravisitor",
+    "price": 1499
+  },
+  { "artist": "Nirvana",
+    "title": "In Utero",
+    "price": 999
+  },
+  { "artist": "Sonic Youth",
+    "title": "Bad Moon Rising",
+    "price": 699
+  }
+]
